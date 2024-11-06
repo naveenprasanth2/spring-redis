@@ -28,4 +28,9 @@ public class UserController {
     public ResponseEntity<List<User>> getAll() {
         return new ResponseEntity<>(userService.getAll(), HttpStatus.OK);
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Boolean> deleteUser(@PathVariable("id") int id){
+        return new ResponseEntity<>(userService.deleteById(id), HttpStatus.OK);
+    }
 }

@@ -31,4 +31,13 @@ public class UserRepository {
         return redisTemplate.opsForHash().entries(KEY)
                 .values().stream().map(o -> (User) o).toList();
     }
+
+    public Boolean deleteById(int id) {
+        try {
+            redisTemplate.opsForHash().delete(KEY, String.valueOf(id));
+        } catch (Exception _) {
+            return false;
+        }
+        return true;
+    }
 }
