@@ -5,6 +5,8 @@ import com.dailycodebuffer.springredis.repository.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @AllArgsConstructor
 public class UserService {
@@ -17,5 +19,9 @@ public class UserService {
 
     public User getUser(int id) {
         return userRepository.getUser(id);
+    }
+
+    public List<User> getAll() {
+        return userRepository.getAll();
     }
 }

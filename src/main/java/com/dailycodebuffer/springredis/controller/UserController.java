@@ -7,6 +7,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @AllArgsConstructor
 @RestController
 public class UserController {
@@ -20,5 +22,10 @@ public class UserController {
     @PostMapping("/user")
     public ResponseEntity<Boolean> addUser(@RequestBody User user) {
         return new ResponseEntity<>(userService.saveUser(user), HttpStatus.CREATED);
+    }
+
+    @GetMapping("/all")
+    public ResponseEntity<List<User>> getAll() {
+        return new ResponseEntity<>(userService.getAll(), HttpStatus.OK);
     }
 }

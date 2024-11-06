@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @AllArgsConstructor
 @Repository
 public class UserRepository {
@@ -23,5 +25,10 @@ public class UserRepository {
 
     public User getUser(int id) {
         return (User) redisTemplate.opsForHash().get(KEY, String.valueOf(id));
+    }
+
+    public List<User> getAll() {
+        return redisTemplate.opsForHash().entries(KEY)
+                .values().stream().map(o -> (User) o).toList();
     }
 }
